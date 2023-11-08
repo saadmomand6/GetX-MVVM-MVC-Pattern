@@ -18,6 +18,9 @@ class RequestTimeOutExceptions extends AppExceptions {
   RequestTimeOutExceptions([String? message]) : super(message, 'Request TimeOut ');
 }
 
+class InternetExceptions extends AppExceptions {
+  InternetExceptions([String? message]) : super(message, 'Internet Connection Error  ');
+}
 class ServerExceptions extends AppExceptions {
   ServerExceptions([String? message]) : super(message, 'Internal Server Error ');
 }
