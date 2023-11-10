@@ -7,9 +7,13 @@ class Languages extends Translations{
   Map<String, Map<String, String>> get keys => {
     'en_US' : {
       'email_hint' : 'Enter Email',
+      'Internet Exception' : 'we are unable to show result',
+      'General Exception' : 'There are General Exception',
     },
     'ur_PK' : {
       'email_hint' : 'ای میل درج کریں۔',
+     'Internet Exception': 'ہم نتیجہ دکھانے سے قاصر ہیں۔',
+     'General Exception' : 'عمومی استثناء موجود ہیں۔',
     }
 
   };
