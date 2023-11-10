@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:getx_mvvm/resources/Getx_localization/languages.dart';
 import 'package:getx_mvvm/resources/routes/routes.dart';
 import 'package:getx_mvvm/view/splash_screen.dart';
 import 'package:get/get.dart';
@@ -17,6 +18,9 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
+      translations: Languages(),
+      locale: const Locale('ur', 'PK'),
+      fallbackLocale: const Locale('en', 'US'),
       home: const SplashScreen(),
       getPages: [
         AppRoutes.approutes()
