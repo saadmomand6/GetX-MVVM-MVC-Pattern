@@ -16,14 +16,17 @@ class RoundButton extends StatefulWidget {
 class _RoundButtonState extends State<RoundButton> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: widget.height,
-      width: widget.width,
-      decoration: BoxDecoration(
-        color: widget.buttonColor,
-        borderRadius: BorderRadius.circular(30),
+    return InkWell(
+      onTap: widget.onpress,
+      child: Container(
+        height: widget.height,
+        width: widget.width,
+        decoration: BoxDecoration(
+          color: widget.buttonColor,
+          borderRadius: BorderRadius.circular(30),
+        ),
+        child: widget.loading ? const Center(child: CircularProgressIndicator()) :  Center(child: Text(widget.title)),
       ),
-      child: widget.loading ? const Center(child: CircularProgressIndicator()) :  Center(child: Text(widget.title)),
     );
   }
 }
