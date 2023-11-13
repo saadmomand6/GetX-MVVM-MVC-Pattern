@@ -38,14 +38,17 @@ class _LoginScreenState extends State<LoginScreen> {
                     Utils.snackbar('Email', 'Enter Email');
                   }
                 },
-                onFieldSubmitted: (Value) {
-                  Utils.changeFieldFocus(context,logincontroller.emailfocusnode.value, logincontroller.passswordfocusnode.value,);
+                onFieldSubmitted: (value) {
+                  Utils.changeFieldFocus(
+                    context,
+                    logincontroller.emailfocusnode.value,
+                    logincontroller.passswordfocusnode.value,
+                  );
                 },
                 decoration: InputDecoration(
-                  hintText: 'email_hint'.tr,
-                  border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(5))
-                ),
+                    hintText: 'email_hint'.tr,
+                    border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(5))),
               ),
               TextFormField(
                 controller: logincontroller.passwordcontroller.value,
@@ -60,15 +63,21 @@ class _LoginScreenState extends State<LoginScreen> {
                     border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(5))),
               ),
-              RoundButton(
-                title: 'login'.tr,
-                textColor: Colors.white,
-                height: 20,
-                width: 200,
-                buttonColor: Colors.teal,
-                onpress: () {
-                  if (_formkey.currentState!.validate()) {}
-                },
+              Obx((){
+                return  RoundButton(
+                  title: 'login'.tr,
+                  textColor: Colors.white,
+                  height: 20,
+                  width: 200,
+                  loading: logincontroller.loading.value,
+                  buttonColor: Colors.teal,
+                  onpress: () {
+                    if (_formkey.currentState!.validate()) {
+                      logincontroller.loginApiViewModel();
+                    }
+                  },
+                );
+              }
               ),
             ],
           ),

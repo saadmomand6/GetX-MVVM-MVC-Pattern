@@ -1,9 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:getx_mvvm/resources/components/round_button.dart';
-
-import '../resources/components/general_exception.dart';
-import '../resources/components/internal_exception_widget.dart';
 import '../view_models/services/splash_services.dart';
 
 class SplashScreen extends StatefulWidget {
