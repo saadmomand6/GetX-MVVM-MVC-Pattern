@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:getx_mvvm/resources/routes/routes_names.dart';
 import 'package:getx_mvvm/utils/utils.dart';
 
-import '../../repository/login_repository.dart';
+import '../../../models/login_model.dart';
+import '../../../repository/login_repository.dart';
+import '../user_preference/user_preferences_view_model.dart';
 
 class LoginViewModel extends GetxController {
   final _myrepository = LoginRepository();
@@ -15,6 +18,8 @@ class LoginViewModel extends GetxController {
 
   RxBool loading = false.obs;
 
+  UserPreference up = UserPreference();
+
   void loginApiViewModel() {
     loading.value = true;
     Map data = {
@@ -25,7 +30,10 @@ class LoginViewModel extends GetxController {
       loading.value = false;
       if (value['error'] == 'user not found') {
         Utils.toastMessage(value['error'], Colors.red);
-      }else {
+      } else {
+        up.saveuser(LoginModel.fromJson(value)).then((value) {
+          Get.toNamed(RoutesNames.home);
+        }).onError((error, stackTrace) {});
         Utils.snackbar('Error', 'Login Successfuly');
       }
     }).onError((error, stackTrace) {
