@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:getx_mvvm/utils/utils.dart';
-
-import '../resources/components/round_button.dart';
-import '../view_models/Controller/login/login_controller.dart';
+import 'package:getx_mvvm/view/widgets/button_login.dart';
+import 'package:getx_mvvm/view/widgets/input_email.dart';
+import 'package:getx_mvvm/view/widgets/input_password.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -13,7 +12,6 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  final logincontroller = Get.put(LoginViewModel());
   final _formkey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
@@ -30,54 +28,10 @@ class _LoginScreenState extends State<LoginScreen> {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              TextFormField(
-                controller: logincontroller.emailcontroller.value,
-                focusNode: logincontroller.emailfocusnode.value,
-                validator: (value) {
-                  if (value!.isEmpty) {
-                    Utils.snackbar('Email', 'Enter Email');
-                  }
-                },
-                onFieldSubmitted: (value) {
-                  Utils.changeFieldFocus(
-                    context,
-                    logincontroller.emailfocusnode.value,
-                    logincontroller.passswordfocusnode.value,
-                  );
-                },
-                decoration: InputDecoration(
-                    hintText: 'email_hint'.tr,
-                    border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(5))),
-              ),
-              TextFormField(
-                controller: logincontroller.passwordcontroller.value,
-                focusNode: logincontroller.passswordfocusnode.value,
-                validator: (value) {
-                  if (value!.isEmpty) {
-                    Utils.snackbar('Email', 'Enter Email');
-                  }
-                },
-                decoration: InputDecoration(
-                    hintText: 'email_hint'.tr,
-                    border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(5))),
-              ),
-              Obx((){
-                return  RoundButton(
-                  title: 'login'.tr,
-                  textColor: Colors.white,
-                  height: 20,
-                  width: 200,
-                  loading: logincontroller.loading.value,
-                  buttonColor: Colors.teal,
-                  onpress: () {
-                    if (_formkey.currentState!.validate()) {
-                      logincontroller.loginApiViewModel();
-                    }
-                  },
-                );
-              }
+              const InputEmail(),
+              const InputPassword(),
+              ButtonLogin(
+                formKey: _formkey,
               ),
             ],
           ),
