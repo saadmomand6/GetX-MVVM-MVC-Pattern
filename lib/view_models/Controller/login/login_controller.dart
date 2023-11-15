@@ -32,9 +32,10 @@ class LoginViewModel extends GetxController {
         Utils.toastMessage(value['error'], Colors.red);
       } else {
         up.saveuser(LoginModel.fromJson(value)).then((value) {
+          Get.delete<LoginViewModel>();
           Get.toNamed(RoutesNames.home);
         }).onError((error, stackTrace) {});
-        Utils.snackbar('Error', 'Login Successfuly');
+        Utils.snackbar('Congrates', 'Login Successfuly');
       }
     }).onError((error, stackTrace) {
       loading.value = false;
